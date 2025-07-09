@@ -14,8 +14,12 @@ class PasswordManager:
             f.write(self.key)
 
     def load_key(self,path):
-        with open(path,'rb') as f:
-            self.key = f.read()
+        try:
+            with open(path,'rb') as f:
+              self.key = f.read()
+        except:
+            print("not an existing key")
+        
         
     def create_password_file(self,path, initial_values=None):
         self.password_file = path
@@ -26,14 +30,13 @@ class PasswordManager:
 
     def load_password_file(self, path):
         self.password_file = path
-        if self.key == None: 
-            print("load a key")
-        else:   
+        try:  
             with open(path, 'r') as f:
                 for line in f:
                     site, encrypted = line.split(":")
                     self.password_dict[site] = Fernet(self.key).decrypt(encrypted.encode()).decode()
-
+        except: 
+            print("password file not found")
     def add_password(self, site, password):
         self.password_dict[site] = password
         if self.password_file is not None:
@@ -42,21 +45,19 @@ class PasswordManager:
                 f.write(site + ":" + encrypted.decode() + "\n")
 
     def get_password(self,site):
-        return self.password_dict[site]
-    
+        try:
+            return self.password_dict[site]
+        except:
+            print("{site} is not an existing pasword")
 def main():
-    password = {
-        "email": "1234567",
-        "facebook" :"1223"
-    }
     pm = PasswordManager()
     print(""" What do you want to do?
           (1) Create a new key
           (2) Load an existing key 
           (3) Create new password file
-          (4) load existing password file
-          (5) add a new password
-          (6) get a password
+          (4) Load existing password file
+          (5) Add a new password
+          (6) Get a password
           (q) Quit
           """)
     done = False
@@ -64,23 +65,23 @@ def main():
     while not done:
 
         choice = input("Enter your choice: ")
-        if choice == "1":
+        if choice == "1": # create a new key (the key to decipher the passwords)
             path = input("Enter path: ")
             pm.create_key(path)
-        elif choice == "2":
+        elif choice == "2": # load a new key (the key to decipher the passwords)
             path = input("Enter path: ")
             pm.load_key(path)
-        elif choice =="3":
+        elif choice =="3": # Create new password file
             path = input("Enter path: ")
             pm.create_password_file(path, password)
-        elif choice == "4":
+        elif choice == "4": #  load existing password file
             path = input("Enter path: ")
             pm.load_password_file(path)
-        elif choice == "5":
+        elif choice == "5": #  add a new password into the password file 
             site = input("Enter the site: ")
             password = input("Enter the password: ")
             pm.add_password(site, password)
-        elif choice == "6":
+        elif choice == "6": # get a password into the password file
             site = input("Enter the site: ")
             print(f"Password for {site} is {pm.get_password(site)}")
         elif choice == "q":
