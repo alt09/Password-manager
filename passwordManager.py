@@ -68,25 +68,32 @@ def main():
         if choice == "1": # create a new key (the key to decipher the passwords)
             path = input("Enter path: ")
             pm.create_key(path)
+
         elif choice == "2": # load a new key (the key to decipher the passwords)
             path = input("Enter path: ")
             pm.load_key(path)
+
         elif choice =="3": # Create new password file
             path = input("Enter path: ")
             pm.create_password_file(path, password)
+
         elif choice == "4": #  load existing password file
             path = input("Enter path: ")
             pm.load_password_file(path)
+
         elif choice == "5": #  add a new password into the password file 
             site = input("Enter the site: ")
             password = input("Enter the password: ")
             pm.add_password(site, password)
+
         elif choice == "6": # get a password into the password file
             site = input("Enter the site: ")
             print(f"Password for {site} is {pm.get_password(site)}")
+
         elif choice == "q":
             done = True
             print("see you puta")
+            
         else:
             print("Invalid choice!!!!")
 
