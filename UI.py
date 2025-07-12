@@ -1,31 +1,97 @@
-import customtkinter
+import customtkinter as ctk
+from passwordManager import *
+""" What do you want to do?
+          (1) Create a new key
+          (2) Load an existing key 
+          (3) Create new password file
+          (4) Load an existing password file
+          (5) Add a new password
+          (6) Get a password
+          (q) Quit
+          """
+ctk.set_appearance_mode("dark")
+ctk.set_default_color_theme("dark-blue")
 
-customtkinter.set_appearance_mode("dark")
-customtkinter.set_default_color_theme("dark-blue")
+root = ctk.CTk()
+root.title("Password manager")
+root.geometry("750x500")
 
-root = customtkinter.CTk()
-root.geometry("500x350")
+def switch_option(switch_to):
+    if switch_to == 'CNK':
+        for widgets in page_frame.winfo_children():
+            widgets.destroy()
+        CNK()
+    elif switch_to == 'LEK':
+        for widgets in page_frame.winfo_children():
+            widgets.destroy()
+        LEK()
+    elif switch_to == 'CNPF':
+        for widgets in page_frame.winfo_children():
+            widgets.destroy()
+        CNPF()
+    elif switch_to == 'LEPF':
+        for widgets in page_frame.winfo_children():
+            widgets.destroy()
+        LEPF()
+    elif switch_to == 'ANP':
+        for widgets in page_frame.winfo_children():
+            widgets.destroy()
+        ANP()
+    elif switch_to == 'GP':
+        for widgets in page_frame.winfo_children():
+            widgets.destroy()
+        GP()
+    else:
+        print('error')
 
-def login():
-    print("test")
+page_frame = ctk.CTkFrame(master=root,width=500,height=550, corner_radius=100)
+page_frame.place(relx=0.5,rely=0.5,anchor="center")
 
-frame = customtkinter.CTkFrame(master=root)
-frame.pack(pady=20,padx=60,fill="both",expand=True)
+def menu():
+    heading_lb =  ctk.CTkLabel(master=page_frame,text="What do you want to do")
+    heading_lb.place(relx=0.5,rely=.2,  anchor= "center")
 
-label = customtkinter.CTkLabel(master=frame , text= "Login System")
+    option1 = ctk.CTkButton(master=page_frame, text='Create a new key', command=lambda:switch_option(switch_to='CNK'))
+    option1.place(relx=0.25,rely=0.4,anchor="center")
 
-label.pack(pady=12,padx=10)
+    option2 = ctk.CTkButton( master=page_frame, text='Load an existing key', command=lambda:switch_option(switch_to='LEK'))
+    option2.place(relx=0.75,rely=0.4,anchor="center")
 
-entry1 = customtkinter.CTkEntry(master=frame, placeholder_text="Username")
-entry1.pack(pady=12,padx=10)
+    option3 = ctk.CTkButton( master=page_frame, text='Create new password file', command=lambda:switch_option(switch_to='CNPF'))
+    option3.place(relx=0.25,rely=0.6,anchor="center")
 
-entry2 = customtkinter.CTkEntry(master=frame, placeholder_text="password", show="*")
-entry2.pack(pady=12,padx=10)
+    option4 = ctk.CTkButton( master=page_frame, text='Load an existing password file', command=lambda:switch_option(switch_to='LEPF'))
+    option4.place(relx=0.75,rely=0.6,anchor="center")
+    
+    option5 = ctk.CTkButton( master=page_frame, text='Add a new password', command=lambda:switch_option(switch_to='ANP'))
+    option5.place(relx=0.25,rely=0.8,anchor="center")
 
-button = customtkinter.CTkButton(master=frame,text="login",  command= login)
-button.pack(pady=12,padx=10)
+    option6 = ctk.CTkButton( master=page_frame, text='Get a password', command=lambda:switch_option(switch_to='GP'))
+    option6.place(relx=0.75,rely=0.8,anchor="center")
+def CNK(): #CNK = create new key
+    heading_lb = ctk.CTkLabel(master=page_frame,text='Create new key')
+    heading_lb.place(relx=0.5,rely=0.5,anchor="center")
 
-checkbox= customtkinter.CTkCheckBox(master=frame,text="remember me" )
-checkbox.pack(pady=12,padx=10)
+def LEK():#  LEK = load an existing key
+    heading_lb = ctk.CTkLabel(master=page_frame,text='Load an existing key')
+    heading_lb.place(relx=0.5,rely=0.5,anchor="center")
+
+def CNPF(): #CNPF = create new password file
+    heading_lb = ctk.CTkLabel(master=page_frame,text='Create new password file')
+    heading_lb.place(relx=0.5,rely=0.5,anchor="center")
+
+def LEPF(): #LEPF = load an existing passwored file 
+    heading_lb = ctk.CTkLabel(master=page_frame,text='Load an existing passwored file')
+    heading_lb.place(relx=0.5,rely=0.5,anchor="center")
+
+def ANP(): #ANP = Add a new password
+    heading_lb = ctk.CTkLabel(master=page_frame,text='Add a new password')
+    heading_lb.place(relx=0.5,rely=0.5,anchor="center")
+
+def GP(): #GP = get a password
+    heading_lb = ctk.CTkLabel(master=page_frame,text='Get a password')
+    heading_lb.place(relx=0.5,rely=0.5,anchor="center")
+
+menu()
 
 root.mainloop()
