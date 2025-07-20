@@ -81,17 +81,23 @@ def CNK(): #CNK = create new key
     button_CNK.place(relx=0.5, rely=0.6, anchor="center")
 def LEK():#  LEK = load an existing key
     heading_lb = ctk.CTkLabel(master=page_frame,text='Load an existing key')
-    heading_lb.place(relx=0.5,rely=0.5,anchor="center")
+    heading_lb.place(relx=0.5,rely=0.2,anchor="center")
 
     entry_key = ctk.CTkEntry(master=page_frame,placeholder_text="key")
-    entry_key.place(relx=0.5,rely=0.5,anchor="center")
+    entry_key.place(relx=0.5,rely=0.4,anchor="center")
 
     button_LEK  = ctk.CTkButton(master=page_frame,text="Load key",command=lambda:PasswordManager.load_key(PasswordManager,entry_key.get()))
     button_LEK.place(relx=0.5,rely=0.6,anchor="center")
 def CNPF(): #CNPF = create new password file
     heading_lb = ctk.CTkLabel(master=page_frame,text='Create new password file')
-    heading_lb.place(relx=0.5,rely=0.5,anchor="center")
+    heading_lb.place(relx=0.5,rely=0.2,anchor="center")
 
+    entry_file = ctk.CTkEntry(master=page_frame,placeholder_text="Password file")
+    entry_file.place(relx=0.5,rely=0.4, anchor="center")
+
+    button_CNPF = ctk.CTkButton(master=page_frame,text="Create  password  file", command=lambda:PasswordManager.create_password_file(PasswordManager,entry_file.get()))
+    button_CNPF.place(relx=0.5, rely=0.6,anchor="center")
+    
 def LEPF(): #LEPF = load an existing passwored file 
     heading_lb = ctk.CTkLabel(master=page_frame,text='Load an existing passwored file')
     heading_lb.place(relx=0.5,rely=0.5,anchor="center")
