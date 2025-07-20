@@ -17,6 +17,7 @@ class PasswordManager:
         try:
             with open(path,'rb') as f:
               self.key = f.read()
+            print("works")
         except:
             print("not an existing key")
         
@@ -29,7 +30,7 @@ class PasswordManager:
                 self.add_password(key, value)
         else:
             open(self.password_file, '+a')
-            
+
     def load_password_file(self, path):
         self.password_file = path
         try:  
@@ -37,6 +38,7 @@ class PasswordManager:
                 for line in f:
                     site, encrypted = line.split(":")
                     self.password_dict[site] = Fernet(self.key).decrypt(encrypted.encode()).decode()
+            print("works")
         except: 
             print("password file not found")
     def add_password(self, site, password):

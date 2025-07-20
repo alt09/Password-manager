@@ -41,8 +41,12 @@ def switch_option(switch_to):
         for widgets in page_frame.winfo_children():
             widgets.destroy()
         GP()
+    elif switch_to == "menu":
+        for widgets in page_frame.winfo_children():
+            widgets.destroy()
+        menu()
     else:
-        print('error')
+        print('error page  not found')
 
 page_frame = ctk.CTkFrame(master=root,width=500,height=550, corner_radius=100)
 page_frame.place(relx=0.5,rely=0.5,anchor="center")
@@ -79,6 +83,9 @@ def CNK(): #CNK = create new key
 
     button_CNK = ctk.CTkButton(master=page_frame,text='Create',command=lambda:PasswordManager.create_key(PasswordManager,entry_key_path.get()))
     button_CNK.place(relx=0.5, rely=0.6, anchor="center")
+
+    button_menu  = ctk.CTkButton(master=page_frame,text="menu",command=lambda:switch_option(switch_to="menu"))
+    button_menu.place(relx=0.5,rely=0.8,anchor="center")
 def LEK():#  LEK = load an existing key
     heading_lb = ctk.CTkLabel(master=page_frame,text='Load an existing key')
     heading_lb.place(relx=0.5,rely=0.2,anchor="center")
@@ -88,6 +95,10 @@ def LEK():#  LEK = load an existing key
 
     button_LEK  = ctk.CTkButton(master=page_frame,text="Load key",command=lambda:PasswordManager.load_key(PasswordManager,entry_key.get()))
     button_LEK.place(relx=0.5,rely=0.6,anchor="center")
+
+    button_menu  = ctk.CTkButton(master=page_frame,text="menu",command=lambda:switch_option(switch_to="menu"))
+    button_menu.place(relx=0.5,rely=0.8,anchor="center")
+
 def CNPF(): #CNPF = create new password file
     heading_lb = ctk.CTkLabel(master=page_frame,text='Create new password file')
     heading_lb.place(relx=0.5,rely=0.2,anchor="center")
@@ -97,6 +108,10 @@ def CNPF(): #CNPF = create new password file
 
     button_CNPF = ctk.CTkButton(master=page_frame,text="Create", command=lambda:PasswordManager.create_password_file(PasswordManager,entry_passwords_path.get()))
     button_CNPF.place(relx=0.5, rely=0.6,anchor="center")
+
+    button_menu  = ctk.CTkButton(master=page_frame,text="menu",command=lambda:switch_option(switch_to="menu"))
+    button_menu.place(relx=0.5,rely=0.8,anchor="center")
+    
 
 def LEPF(): #LEPF = load an existing passwored file 
     heading_lb = ctk.CTkLabel(master=page_frame,text='Load an existing passwored file')
@@ -108,6 +123,9 @@ def LEPF(): #LEPF = load an existing passwored file
     button_LEPF = ctk.CTkButton(master=page_frame,text="Load password file", command=lambda:PasswordManager.load_password_file(PasswordManager,entry_passwords_file.get()))
     button_LEPF.place(relx=0.5, rely=0.6,anchor="center")
 
+    button_menu  = ctk.CTkButton(master=page_frame,text="menu",command=lambda:switch_option(switch_to="menu"))
+    button_menu.place(relx=0.5,rely=0.8,anchor="center")
+
 def ANP(): #ANP = Add a new password
     heading_lb = ctk.CTkLabel(master=page_frame,text='Add a new password')
     heading_lb.place(relx=0.5,rely=0.2,anchor="center")
@@ -117,6 +135,9 @@ def ANP(): #ANP = Add a new password
 
     button_ANP = ctk.CTkButton(master=page_frame,text="Add password", command=lambda:PasswordManager.add_password(PasswordManager,entry_password_to_add.get()))
     button_ANP.place(relx=0.5, rely=0.6,anchor="center")
+
+    button_menu  = ctk.CTkButton(master=page_frame,text="menu",command=lambda:switch_option(switch_to="menu"))
+    button_menu.place(relx=0.5,rely=0.8,anchor="center")
 
 def GP(): #GP = get a password
     heading_lb = ctk.CTkLabel(master=page_frame,text='Get a password')
@@ -128,6 +149,8 @@ def GP(): #GP = get a password
     button_GP = ctk.CTkButton(master=page_frame,text="Get password", command=lambda:PasswordManager.get_password(PasswordManager,entry_password_to_get.get()))
     button_GP.place(relx=0.5, rely=0.6,anchor="center")
 
+    button_menu  = ctk.CTkButton(master=page_frame,text="menu",command=lambda:switch_option(switch_to="menu"))
+    button_menu.place(relx=0.5,rely=0.8,anchor="center")
 menu()
 
 root.mainloop()
