@@ -27,7 +27,9 @@ class PasswordManager:
         if initial_values is not None:
             for key, value in initial_values.items():
                 self.add_password(key, value)
-
+        else:
+            open(self.password_file, '+a')
+            
     def load_password_file(self, path):
         self.password_file = path
         try:  
@@ -75,7 +77,7 @@ def main():
 
         elif choice =="3": # Create new password file
             path = input("Enter path: ")
-            pm.create_password_file(path, password)
+            pm.create_password_file(path)
 
         elif choice == "4": #  load existing password file
             path = input("Enter path: ")

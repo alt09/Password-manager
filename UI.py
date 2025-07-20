@@ -122,7 +122,7 @@ def GP(): #GP = get a password
     heading_lb = ctk.CTkLabel(master=page_frame,text='Get a password')
     heading_lb.place(relx=0.5,rely=0.2,anchor="center")
 
-    entry_password_to_get = ctk.CTkEntry(master=page_frame,placeholder_text="Password to getr")
+    entry_password_to_get = ctk.CTkEntry(master=page_frame,placeholder_text="Password to get")
     entry_password_to_get.place(relx=0.5,rely=0.4, anchor="center")
 
     button_GP = ctk.CTkButton(master=page_frame,text="Get password", command=lambda:PasswordManager.get_password(PasswordManager,entry_password_to_get.get()))
