@@ -1,3 +1,4 @@
+import os
 from cryptography.fernet import Fernet
 
 
@@ -8,7 +9,10 @@ class PasswordManager:
         self.password_dict = {}
 
     def create_key(self, path):
-        """Create and save a new encryption key."""
+        """Create and save a new encryption key. and check if the folder exists."""
+        folder = os.path.dirname(path)
+        if not os.path.exists(folder):  
+            os.makedirs(folder)
         self.key = Fernet.generate_key()
         with open(path, 'wb') as f:
             f.write(self.key)
@@ -24,7 +28,11 @@ class PasswordManager:
             print("Key file not found.")
 
     def create_password_file(self, path, initial_values=None):
-        """Create a new password file."""
+        """Create a new password file. and check if it exists."""
+        folder = os.path.dirname(path)
+        if not os.path.exists(folder):  
+            os.makedirs(folder)
+
         self.password_file = path
         open(self.password_file, 'a').close()
         if initial_values:
