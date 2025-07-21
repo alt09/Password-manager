@@ -133,17 +133,20 @@ def ANP(): #ANP = Add a new password
     entry_password_to_add = ctk.CTkEntry(master=page_frame,placeholder_text="Password to add")
     entry_password_to_add.place(relx=0.5,rely=0.4, anchor="center")
 
-    button_ANP = ctk.CTkButton(master=page_frame,text="Add password", command=lambda:PasswordManager.add_password(PasswordManager,entry_password_to_add.get()))
-    button_ANP.place(relx=0.5, rely=0.6,anchor="center")
+    entry_site = ctk.CTkEntry(master= page_frame,placeholder_text="website of the password")
+    entry_site.place(relx=0.5,rely=0.6,anchor="center")
+
+    button_ANP = ctk.CTkButton(master=page_frame,text="Add password", command=lambda:PasswordManager.add_password(PasswordManager,entry_site.get(),entry_password_to_add.get()))
+    button_ANP.place(relx=0.5, rely=0.8,anchor="center")
 
     button_menu  = ctk.CTkButton(master=page_frame,text="menu",command=lambda:switch_option(switch_to="menu"))
-    button_menu.place(relx=0.5,rely=0.8,anchor="center")
+    button_menu.place(relx=0.5,rely=0.9,anchor="center")
 
 def GP(): #GP = get a password
     heading_lb = ctk.CTkLabel(master=page_frame,text='Get a password')
     heading_lb.place(relx=0.5,rely=0.2,anchor="center")
 
-    entry_password_to_get = ctk.CTkEntry(master=page_frame,placeholder_text="Password to get")
+    entry_password_to_get = ctk.CTkEntry(master=page_frame,placeholder_text="site of the password")
     entry_password_to_get.place(relx=0.5,rely=0.4, anchor="center")
 
     button_GP = ctk.CTkButton(master=page_frame,text="Get password", command=lambda:PasswordManager.get_password(PasswordManager,entry_password_to_get.get()))

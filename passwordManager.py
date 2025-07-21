@@ -3,21 +3,21 @@ from cryptography.fernet import Fernet
 
 class PasswordManager:
 
-    def __init__(self):
-        self.key = None
-        self.password_file = None
-        self.password_dict = {} # Dictionary to store passwords
+    key = None
+    password_file = None
+    password_dict = {} # Dictionary to store passwords
 
     def create_key(self, path):
         self.key = Fernet.generate_key()
         with open(path, 'wb') as f:
             f.write(self.key)
+        print("key created")
 
     def load_key(self,path):
         try:
             with open(path,'rb') as f:
               self.key = f.read()
-            print("works")
+            print("key loaded")
         except:
             print("not an existing key")
         
@@ -30,7 +30,7 @@ class PasswordManager:
                 self.add_password(key, value)
         else:
             open(self.password_file, '+a')
-
+        print("passwords file created")
     def load_password_file(self, path):
         self.password_file = path
         try:  
@@ -38,7 +38,7 @@ class PasswordManager:
                 for line in f:
                     site, encrypted = line.split(":")
                     self.password_dict[site] = Fernet(self.key).decrypt(encrypted.encode()).decode()
-            print("works")
+            print("passwords file loaded")
         except: 
             print("password file not found")
     def add_password(self, site, password):
@@ -47,12 +47,14 @@ class PasswordManager:
             with open(self.password_file, '+a') as f:
                 encrypted = Fernet(self.key).encrypt(password.encode())
                 f.write(site + ":" + encrypted.decode() + "\n")
-
+        print("password added")
     def get_password(self,site):
         try:
+            print("password getted" + self.password_dict[site])
             return self.password_dict[site]
+
         except:
-            print("{site} is not an existing pasword")
+            print(site +" is not an existing password")
 def main():
     pm = PasswordManager()
     print(""" What do you want to do?
