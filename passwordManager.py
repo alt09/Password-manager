@@ -16,14 +16,12 @@ class PasswordManager:
         self.key = Fernet.generate_key()
         with open(path, 'wb') as f:
             f.write(self.key)
-        print("Key created.")
 
     def load_key(self, path):
         """Load an existing encryption key from file."""
         try:
             with open(path, 'rb') as f:
                 self.key = f.read()
-            print("Key loaded.")
         except FileNotFoundError:
             print("Key file not found.")
 
@@ -38,7 +36,7 @@ class PasswordManager:
         if initial_values:
             for key, value in initial_values.items():
                 self.add_password(key, value)
-        print("Password file created.")
+
 
     def load_password_file(self, path):
         self.password_file = path
@@ -47,7 +45,7 @@ class PasswordManager:
                 for line in f:
                     site, encrypted = line.split(":")
                     self.password_dict[site] = Fernet(self.key).decrypt(encrypted.encode()).decode()
-            print("passwords file loaded")
+
         except:
             print("password file not found")
 
@@ -57,11 +55,10 @@ class PasswordManager:
             with open(self.password_file, 'a') as f:
                 encrypted = Fernet(self.key).encrypt(password.encode())
                 f.write(site + ":" + encrypted.decode() + "\n")
-        print("password added")
+
 
     def get_password(self, site):
         try:
-            print("password getted" + self.password_dict[site])
             return self.password_dict[site]
 
         except:
@@ -107,11 +104,11 @@ def main():
 
         elif choice == "6":  # get a password into the password file
             site = input("Enter the site: ")
-            print(f"Password for {site} is {pm.get_password(site)}")
+            print(f"Password for {site} is {pm.get_password(site)}") #TODO: change this to return the password
 
         elif choice == "q":
             done = True
-            print("see you puta")
+            print("Exiting the program...")
 
         else:
             print("Invalid choice!!!!")
