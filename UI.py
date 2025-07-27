@@ -40,55 +40,51 @@ page_frame.place(relx=0.5, rely=0.5, anchor="center")
 
 
 def menu():
-    """Displays the main menu."""
+
+    for i  in range(6):
+            match  i:
+                case 0:
+                    buttons = ctk.CTkButton(
+                        master=page_frame,
+                        text="Create new key",
+                        command=lambda: switch_option("cnk")
+                    ).place(relx=0.25, rely=0.4, anchor="center")
+                case 1:
+                    buttons = ctk.CTkButton(
+                        master=page_frame,
+                        text="Load existing key",
+                        command=lambda: switch_option("lek")
+                    ).place(relx=0.75, rely=0.4, anchor="center")
+                case 2:
+                    buttons = ctk.CTkButton(
+                        master=page_frame,
+                        text="Create new password file",
+                        command=lambda: switch_option("cnpf")
+                    ).place(relx=0.25, rely=0.6, anchor="center")
+                case 3:
+                    buttons = ctk.CTkButton(
+                        master=page_frame,
+                        text="Load existing password file",
+                        command=lambda: switch_option("lepf")
+                    ).place(relx=0.75, rely=0.6, anchor="center")
+                case 4:
+                    buttons = ctk.CTkButton(
+                        master=page_frame,
+                        text="Add new password",
+                        command=lambda: switch_option("anp")
+                    ).place(relx=0.25, rely=0.8, anchor="center")
+                case 5:
+                    buttons = ctk.CTkButton(
+                        master=page_frame,
+                        text="Get password",
+                        command=lambda: switch_option("gp")
+                    ).place(relx=0.75, rely=0.8, anchor="center")
     heading_label = ctk.CTkLabel(
-        master=page_frame, text="What do you want to do"
-    )
-    heading_label.place(relx=0.5, rely=0.2, anchor="center")
-
-    option1 = ctk.CTkButton(
-        master=page_frame,
-        text='Create a new key',
-        command=lambda: switch_option('cnk')
-    )
-    option1.place(relx=0.25, rely=0.4, anchor="center")
-
-    option2 = ctk.CTkButton(
-        master=page_frame,
-        text='Load an existing key',
-        command=lambda: switch_option('lek')
-    )
-    option2.place(relx=0.75, rely=0.4, anchor="center")
-
-    option3 = ctk.CTkButton(
-        master=page_frame,
-        text='Create new password file',
-        command=lambda: switch_option('cnpf')
-    )
-    option3.place(relx=0.25, rely=0.6, anchor="center")
-
-    option4 = ctk.CTkButton(
-        master=page_frame,
-        text='Load an existing password file',
-        command=lambda: switch_option('lepf')
-    )
-    option4.place(relx=0.75, rely=0.6, anchor="center")
-
-    option5 = ctk.CTkButton(
-        master=page_frame,
-        text='Add a new password',
-        command=lambda: switch_option('anp')
-    )
-    option5.place(relx=0.25, rely=0.8, anchor="center")
-
-    option6 = ctk.CTkButton(
-        master=page_frame,
-        text='Get a password',
-        command=lambda: switch_option('gp')
-    )
-    option6.place(relx=0.75, rely=0.8, anchor="center")
+        master=page_frame, text='Password Manager Menu'
+    ).place(relx=0.5, rely=0.1, anchor="center")
 
 
+    
 def create_new_key_page():
     """Page for creating a new key."""
     heading_label = ctk.CTkLabel(
